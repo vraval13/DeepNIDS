@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | NIDS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous" />
+  <style>
+    body {
+      background: linear-gradient(120deg, #393E46 65%, #00ADB5 100%);
+      min-height: 100vh; color: #fff;
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      margin: 0; padding: 0;
+    }
+    /* Loader */
+    #loader {
+      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: #13171c; z-index: 9999;
+    }
+    .spinner-border {
+      width: 3.5rem; height: 3.5rem; border-width: .3em;
+      color: #00ADB5;
+    }
+    .animate-bottom {
+      animation: fadeInSlide .8s cubic-bezier(.3,.7,.4,1);
+    }
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(40px);}
+      to   { opacity: 1; transform: none;}
+    }
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: #00ADB5 !important;
+    }
+    /* About Section */
+    .about-section {
+      max-width: 900px;
+      margin: 40px auto 32px auto;
+      background: rgba(57, 62, 70, 0.86);
+      backdrop-filter: blur(3px);
+      border-radius: 24px;
+      padding: 48px 26px 36px 26px;
+      box-shadow: 0 6px 32px -10px #00adb540;
+      text-align: center;
+    }
+    .about-section h1 {
+      font-size: 2.4rem; font-weight:800;
+      margin-bottom: 14px; letter-spacing: 1px;
+      color: #eafcfc;
+      text-shadow: 0 2px 16px #0e494f54;
+    }
+    .about-section h4 {
+      color: #00ADB5; font-weight: 600;
+      margin-bottom: 18px; margin-top: 0;
+    }
+    .about-section p {
+      line-height: 1.7; font-size: 1.09rem;
+      margin-bottom: 10px;
+    }
+    /* Team Section */
+    .team-title {
+      text-align:center;
+      margin: 46px 0 28px 0;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing:1px;
+      color: #eafcfc;
+      text-shadow: 0 2px 16px #00adb544;
+    }
+    .team-row {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 32px;
+      margin-bottom: 46px;
+    }
+    .card-about {
+      background: #00adb534;
+      border: none;
+      border-radius: 22px;
+      box-shadow: 0 5px 30px -10px #00adb540;
+      max-width: 325px; width:100%;
+      margin-bottom: 24px;
+      transition: box-shadow .17s, transform .13s;
+      overflow: hidden;
+    }
+    .card-about:hover {
+      box-shadow: 0 16px 48px -6px #00adb585;
+      transform: translateY(-6px) scale(1.03);
+    }
+    .card-img-top {
+      width: 125px; height: 125px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 18px auto 0 auto; display: block;
+      box-shadow: 0 2px 18px #00adb540;
+      border: 4px solid #eafcfc42;
+      background: #fff;
+    }
+    .card-body {padding: 24px 18px 18px 18px;}
+    .card-title { font-size: 1.25rem; font-weight: 700; color:#eafcfc;}
+    .card-about h6 {color: #00ADB5; font-weight: 600; margin-bottom:6px;}
+    .card-text { color: #eafcfc; font-size: 0.98rem; margin-top: 10px;}
+    .social-icon {
+      margin: 0 8px; color: #fff;
+      transition: color .14s;
+    }
+    .social-icon:hover {color: #00ADB5;}
+    @media (max-width: 800px) {
+        .about-section {padding: 5vw 2vw;}
+        .team-row {gap: 12px;}
+    }
+    @media (max-width: 620px) {
+      .team-row { flex-direction: column; align-items: center;}
+    }
+  </style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- LOADER -->
+<div id="loader"><div class="spinner-border" role="status"></div></div>
+
+<!-- MAIN CONTENT -->
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+  <div class="container-fluid">
+    <div class="about-section">
+      <h1>About Our System</h1>
+      <h4>Intelligent Network Intrusion Detection Using ML/DL & Modern Web</h4>
+      <p>Large numbers of businesses are affected by data breaches and cyber-attacks. Our system helps prevent such malicious activity by detecting network anomalies and promptly alerting users.</p>
+      <p>This solution leverages the NSL-KDD dataset, using advanced models like LSTM (a type of RNN) and KNN for both binary and multi-class classification of network events.</p>
+      <p>Our ReactJS frontend empowers users to analyze network behavior and receive actionable feedback about potential threats. Node.js and MongoDB provide robust backend support, storing data and enabling secure authentication with Google OAuth 2.0 and hashed credentials.</p>
+      <p>Fully responsive with session and cookie management, our platform ensures a seamless and secure user experience after login.</p>
+    </div>
+  </div>
+
+  <h1 class="team-title">Our Team</h1>
+  <div class="container-fluid">
+    <div class="team-row">
+      <!-- Team Member 1 -->
+      <div class="card card-about text-center">
+        <img class="card-img-top" src="/Vyom.jpeg" alt="Vyom Raval">
+        <div class="card-body">
+          <h4 class="card-title">Vyom Raval</h4>
+          <h6>MERN Stack & Algorithms</h6>
+          <p class="card-text">Computer Science student passionate about full-stack web/app development and integrating APIs, databases, and ML. Enjoys learning new tech and building reliable solutions.</p>
+          <div>
+            <a href="https://vyomraval.vercel.app/" target="_blank" title="Website"><i class="social-icon fas fa-globe fa-2x"></i></a>
+            <a href="https://github.com/vraval13" target="_blank" title="GitHub"><i class="social-icon fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/vyom-raval-490108252/" target="_blank" title="LinkedIn"><i class="social-icon fab fa-linkedin fa-2x"></i></a>
+            <a href="mailto:ravalvyom17@gmail.com" target="_blank" title="Email"><i class="social-icon fas fa-envelope fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="card card-about text-center">
+        <img class="card-img-top" src="/Maharsh.jpeg" alt="Maharsh Mistri">
+        <div class="card-body">
+          <h4 class="card-title">Maharsh Mistri</h4>
+          <h6>MERN Stack & Algorithms</h6>
+          <p class="card-text">Computer Science student skilled in building client-to-server web applications, integrating ML, and managing databases. Enjoys new challenges and is dedicated to quality tech solutions.</p>
+          <div>
+            <a href="https://www.google.com/" target="_blank" title="Website"><i class="social-icon fas fa-globe fa-2x"></i></a>
+            <a href="https://github.com/Maharsh-Mistri" target="_blank" title="GitHub"><i class="social-icon fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/maharsh-mistri/" target="_blank" title="LinkedIn"><i class="social-icon fab fa-linkedin fa-2x"></i></a>
+            <a href="mailto:@gmail.com" target="_blank" title="Email"><i class="social-icon fas fa-envelope fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End team-row -->
+  </div>
+  <!-- Footer Placeholder -->
+  <!-- <%- include('partials/footer') %> -->
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script>
+var myVar;
+function myFunction() {
+  myVar = setTimeout(showPage, 350);
+}
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+</body>
+</html>

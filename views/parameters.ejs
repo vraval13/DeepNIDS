@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Enter Parameters | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+    }
+    body {
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      background: var(--muted);
+      color: var(--accent);
+      margin: 0; padding:0;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: var(--primary) !important;
+    }
+    .hero-section {
+      background: linear-gradient(90deg, #00adb5 0%, #393e46 100%);
+      color: #fff;
+      padding: 48px 0 32px 0;
+      text-align: center;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      margin-bottom: 32px;
+    }
+    .hero-section h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .hero-section p {
+      font-size: 1.18rem;
+      font-weight: 400;
+      opacity: 0.92;
+      margin-bottom: 0;
+    }
+    .main-section {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    .param-card {
+      background: #fff;
+      border-radius: 22px;
+      max-width: 520px;
+      width: 100%;
+      padding: 36px 28px 28px 28px;
+      box-shadow: 0 6px 32px -10px #00adb540, 0 1.5px 3.5px #aaa4;
+      margin: 0 auto;
+      animation: fadeInSlide 0.8s cubic-bezier(.3,.7,.4,1) forwards;
+      opacity: 0;
+      border: none;
+    }
+    @keyframes fadeInSlide {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: none;}
+    }
+    .param-card h2 {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .form-control, select {
+      border-radius: 10px;
+      border: 1.6px solid var(--primary);
+      padding: 0.55rem 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .form-control:focus, select:focus {
+      outline: none;
+      border-color: #007d88;
+      box-shadow: 0 0 8px #00adb599;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+      font-size: 1.04rem;
+    }
+    .btn-nids {
+      background-color: var(--primary);
+      color: #fff;
+      border-radius: 28px;
+      font-weight: 600;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      padding: 0.7rem 2rem;
+      font-size: 1.13rem;
+      margin-top: 1.2rem;
+      width: 100%;
+    }
+    .btn-nids:hover, .btn-nids:focus {
+      background: #007d88;
+      color: #fff;
+      box-shadow: 0 9px 24px rgba(0,173,181,0.18);
+    }
+    @media (max-width: 600px) {
+      .main-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .param-card { padding: 18px 7px; border-radius: 16px; }
+      .hero-section { border-radius: 0 0 18px 18px; }
+      .hero-section h1 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+  <h1><i class="fas fa-sliders-h mr-2"></i>Enter Network Parameters</h1>
+  <p>Fill in the network parameters below to predict the type of attack.</p>
+</div>
+
+<section class="main-section">
+  <div class="param-card">
+    <h2><i class="fas fa-network-wired mr-2"></i>Network Parameters</h2>
+    <form action="/parameters" method="post">
+
+      <!-- Protocol Type -->
+      <div class="form-group">
+        <label for="protocol_type">Protocol Type</label>
+        <select class="form-control" name="protocol_type" required>
+          <option value="" selected disabled>Choose...</option>
+          <option value="tcp">TCP</option>
+          <option value="udp">UDP</option>
+          <option value="icmp">ICMP</option>
+        </select>
+      </div>
+
+      <!-- Service -->
+      <div class="form-group">
+        <label for="service">Service</label>
+        <select class="form-control" name="service" required>
+          <option value="" selected disabled>Choose...</option>
+          <option value="IRC">IRC</option>
+          <option value="X11">X11</option>
+          <option value="Z39_50">Z39_50</option>
+          <option value="http_8001">http_8001</option>
+          <option value="auth">auth</option>
+          <option value="bgp">bgp</option>
+          <option value="courier">courier</option>
+          <!-- ...all other services... -->
+          <option value="whois">whois</option>
+        </select>
+      </div>
+
+      <!-- Flag -->
+      <div class="form-group">
+        <label for="flag">Flag</label>
+        <select class="form-control" name="flag" required>
+          <option value="" selected disabled>Choose...</option>
+          <option value="OTH">OTH</option>
+          <option value="REJ">REJ</option>
+          <option value="RSTO">RSTO</option>
+          <option value="RSTOS0">RSTOS0</option>
+          <option value="RSTR">RSTR</option>
+          <option value="S0">S0</option>
+          <option value="S1">S1</option>
+          <option value="S2">S2</option>
+          <option value="S3">S3</option>
+          <option value="SF">SF</option>
+          <option value="SH">SH</option>
+        </select>
+      </div>
+
+      <!-- Numeric Entry Fields – Responsive Two Columns -->
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>logged_in</label>
+          <input type="text" class="form-control" name="logged_in" placeholder="e.g. 0 or 1" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>count</label>
+          <input type="text" class="form-control" name="count" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>srv_serror_rate</label>
+          <input type="text" class="form-control" name="srv_serror_rate" placeholder="Numeric" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>srv_rerror_rate</label>
+          <input type="text" class="form-control" name="srv_rerror_rate" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>same_srv_rate</label>
+          <input type="text" class="form-control" name="same_srv_rate" placeholder="Numeric" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>diff_srv_rate</label>
+          <input type="text" class="form-control" name="diff_srv_rate" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>dst_host_count</label>
+          <input type="text" class="form-control" name="dst_host_count" placeholder="Numeric" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>dst_host_srv_count</label>
+          <input type="text" class="form-control" name="dst_host_srv_count" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>dst_host_same_srv_rate</label>
+          <input type="text" class="form-control" name="dst_host_same_srv_rate" placeholder="Numeric" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>dst_host_diff_srv_rate</label>
+          <input type="text" class="form-control" name="dst_host_diff_srv_rate" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>dst_host_same_src_port_rate</label>
+          <input type="text" class="form-control" name="dst_host_same_src_port_rate" placeholder="Numeric" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>dst_host_serror_rate</label>
+          <input type="text" class="form-control" name="dst_host_serror_rate" placeholder="Numeric" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>dst_host_rerror_rate</label>
+        <input type="text" class="form-control" name="dst_host_rerror_rate" placeholder="Numeric" required>
+      </div>
+
+      <button type="submit" class="btn btn-nids">
+        <i class="fas fa-bolt mr-1"></i>Predict
+      </button>
+    </form>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

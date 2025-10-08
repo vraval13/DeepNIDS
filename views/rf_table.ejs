@@ -1,0 +1,93 @@
+<% var metrics = typeof metrics !== 'undefined' ? metrics : {}; %>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Random Forest Multi-Class Table | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+      --card-bg: #fff;
+    }
+    body { font-family: 'Montserrat', 'Ubuntu', sans-serif; background: var(--muted); color: var(--accent); margin: 0; padding:0;}
+    .navbar { background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important; box-shadow: 0 2px 16px rgba(57,62,70,0.08); padding: 1rem 2rem;}
+    .navbar-brand { font-weight: bold; letter-spacing:2px; font-size: 1.7rem; color: #fff !important;}
+    .hero-section { background: linear-gradient(90deg, #00adb5 0%, #393e46 100%); color: #fff; padding: 44px 0 28px 0; text-align: center; border-radius: 0 0 32px 32px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10); margin-bottom: 32px;}
+    .hero-section h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 10px;}
+    .table-section { display: flex; justify-content: center; align-items: flex-start; min-height: 60vh; padding-bottom: 40px;}
+    .table-card { background: var(--card-bg); border-radius: 22px; box-shadow: 0 6px 32px -10px #00adb540, 0 1.5px 3.5px #aaa4; padding: 32px 18px 24px 18px; width: 100%; max-width: 900px; margin: 0 auto; animation: fadeInSlide 0.8s cubic-bezier(.3,.7,.4,1) forwards; opacity: 0;}
+    @keyframes fadeInSlide { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: none;}}
+    .table-card h2 { color: var(--primary); font-weight: 700; font-size: 1.35rem; margin-bottom: 1.5rem; text-align: center; letter-spacing: 1px;}
+    .table { background: #f7fafb; border-radius: 12px; overflow: hidden; margin-bottom: 0;}
+    .table thead th { background: var(--primary); color: #fff; border: none; font-size: 1.05rem; letter-spacing: 1px;}
+    .table-striped tbody tr:nth-of-type(odd) { background-color: #eafcfc;}
+    .table-striped tbody tr:nth-of-type(even) { background-color: #fff;}
+    .table td, .table th { color: var(--accent); vertical-align: middle; font-weight: 500;}
+    @media (max-width: 900px) { .table-card { padding: 18px 2px; } .table-section { padding: 0 2vw 30px 2vw; } }
+    @media (max-width: 600px) { .hero-section { border-radius: 0 0 18px 18px; } .hero-section h1 { font-size: 1.2rem; } .table-card { border-radius: 12px; padding: 10px 0; } .table th, .table td { font-size: 0.95rem; } }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+</nav>
+<div class="hero-section">
+  <h1><i class="fas fa-tree mr-2"></i>Random Forest Multi-Class Classification Table</h1>
+  <p>Performance metrics for Random Forest (Multi-Class Classification)</p>
+</div>
+<section class="table-section">
+  <div class="table-card">
+    <h2>Random Forest Multi-Class Results</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th> </th>
+          <th>PRECISION</th>
+          <th>RECALL</th>
+          <th>F-1 SCORE</th>
+          <th>SUPPORT</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% ['Dos', 'Normal', 'Probe', 'R2L', 'U2R'].forEach(function(cls) { %>
+    <tr>
+      <th><%= cls %></th>
+      <td><%= metrics[cls] ? metrics[cls].precision : '-' %></td>
+      <td><%= metrics[cls] ? metrics[cls].recall : '-' %></td>
+      <td><%= metrics[cls] ? metrics[cls]['f1-score'] : '-' %></td>
+      <td><%= metrics[cls] ? metrics[cls].support : '-' %></td>
+    </tr>
+  <% }) %>
+  <tr>
+    <th>ACCURACY</th>
+    <td colspan="3"><%= metrics.accuracy ? metrics.accuracy : '-' %></td>
+    <td><%= metrics['macro avg'] ? metrics['macro avg'].support : '-' %></td>
+  </tr>
+  <tr>
+    <th>MACRO AVG</th>
+    <td><%= metrics['macro avg'] ? metrics['macro avg'].precision : '-' %></td>
+    <td><%= metrics['macro avg'] ? metrics['macro avg'].recall : '-' %></td>
+    <td><%= metrics['macro avg'] ? metrics['macro avg']['f1-score'] : '-' %></td>
+    <td><%= metrics['macro avg'] ? metrics['macro avg'].support : '-' %></td>
+  </tr>
+  <tr>
+    <th>WEIGHTED AVG</th>
+    <td><%= metrics['weighted avg'] ? metrics['weighted avg'].precision : '-' %></td>
+    <td><%= metrics['weighted avg'] ? metrics['weighted avg'].recall : '-' %></td>
+    <td><%= metrics['weighted avg'] ? metrics['weighted avg']['f1-score'] : '-' %></td>
+    <td><%= metrics['weighted avg'] ? metrics['weighted avg'].support : '-' %></td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+</section>
+</body>
+</html>

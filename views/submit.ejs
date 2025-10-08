@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Predict | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+    }
+    body {
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      background: var(--muted);
+      color: var(--accent);
+      margin: 0; padding:0;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: var(--primary) !important;
+    }
+    .main-section {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    .predict-title {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00adb522;
+      font-size: 2.3rem;
+      margin-bottom: 2.2rem;
+      text-align: center;
+    }
+    .predict-cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+    }
+    .predict-card {
+      background: #fff;
+      border-radius: 22px;
+      max-width: 370px;
+      width: 100%;
+      padding: 32px 26px 28px 26px;
+      box-shadow: 0 6px 32px -10px #00adb540, 0 1.5px 3.5px #aaa4;
+      margin: 0 10px 30px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      animation: fadeInSlide 0.8s cubic-bezier(.3,.7,.4,1) forwards;
+      opacity: 0;
+      border: none;
+    }
+    @keyframes fadeInSlide {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: none;}
+    }
+    .predict-card h5 {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+    }
+    .predict-card p {
+      color: #393E46;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .btn-nids {
+      background-color: var(--primary);
+      color: #fff;
+      border-radius: 28px;
+      font-weight: 600;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      padding: 0.7rem 2rem;
+      font-size: 1.13rem;
+    }
+    .btn-nids:hover, .btn-nids:focus {
+      background: #007d88;
+      color: #fff;
+      box-shadow: 0 9px 24px rgba(0,173,181,0.18);
+    }
+    .btn-outline-dark {
+      border-radius: 28px;
+      color: var(--accent);
+      border: 2px solid var(--primary);
+      background: transparent;
+      transition: background .18s, color .18s;
+      font-weight: 600;
+    }
+    .btn-outline-dark:hover, .btn-outline-dark:focus {
+      background: var(--primary);
+      color: #fff;
+    }
+    #downloadBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .form-control, .form-control-file, select {
+      border-radius: 10px;
+      border: 1.6px solid var(--primary);
+      padding: 0.55rem 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .form-control:focus, select:focus {
+      outline: none;
+      border-color: #007d88;
+      box-shadow: 0 0 8px #00adb599;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    @media (max-width: 1100px) {
+      .predict-cards-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .predict-card {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .main-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .predict-title { font-size: 1.5rem; }
+      .predict-card { padding: 18px 7px; border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="main-section">
+  <div class="container">
+    <h1 class="predict-title">Predict Network Intrusion Attacks</h1>
+    <div class="predict-cards-row">
+
+      <!-- RANDOM ROW PREDICT CARD -->
+      <div class="predict-card shadow-nids">
+        <h5><i class="fas fa-random mr-2"></i>Random Row Predict</h5>
+        <p>It will take a single row from validation data to predict the type of attack.</p>
+        <a href="/secrets" class="btn btn-nids mt-2">Predict</a>
+      </div>
+
+      <!-- OPEN CSV CARD -->
+      <div class="predict-card shadow-nids">
+        <h5><i class="fas fa-file-csv mr-2"></i>Open CSV</h5>
+        <p>Upload a CSV file (1..500..n rows) and update each row with the predicted type of attack.</p>
+        <form id="uploadForm" enctype="multipart/form-data" action="/uploadjavatpoint" method="post" class="text-left">
+          <div class="form-group text-left">
+            <label for="algorithmSelect"><i class="fas fa-microchip"></i> Select Algorithm</label>
+            <select id="algorithmSelect" name="selected_model" class="form-control" required>
+              <option value="" disabled selected>Select Algorithm</option>
+              <option value="knn">KNN </option>
+              <option value="rf">Random Forest </option>
+              <option value="cnn">CNN </option>
+              <option value="lstm">LSTM </option>
+            </select>
+          </div>
+          <div class="form-group text-left">
+            <label for="fileInput"><i class="fas fa-file-csv"></i> Upload CSV File</label>
+            <input type="file" id="fileInput" name="myfile" accept=".csv,.txt" class="form-control-file"
+                   required onchange="enablePredictBtn()">
+          </div>
+          <button type="submit" id="predictBtn" class="btn btn-nids btn-block mt-2" disabled>Predict</button>
+          <small id="status" class="form-text mt-2" style="color:#00ADB5"></small>
+        </form>
+        <form action="/download-file" method="get" class="mt-3">
+          <button id="downloadBtn" class="btn btn-outline-dark btn-block" type="submit" disabled>Download File</button>
+        </form>
+      </div>
+
+      <!-- ENTER NETWORK PARAMETERS CARD -->
+      <div class="predict-card shadow-nids">
+        <h5><i class="fas fa-sliders-h mr-2"></i>Enter Network Parameters</h5>
+        <p>It will take network parameters from you and predict the type of attack.</p>
+        <a href="/parameters" class="btn btn-nids mt-2">Predict</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script>
+  function enablePredictBtn() {
+    document.getElementById("predictBtn").disabled = false;
+  }
+  $(document).ready(function() {
+    $('#uploadForm').submit(function(e) {
+      e.preventDefault();
+      $("#status").text("Uploading and predicting...");
+      $(this).ajaxSubmit({
+        error: function(xhr) {
+          $("#status").text('Error: ' + xhr.status);
+        },
+        success: function(response) {
+          $("#status").text(response);
+          $('#downloadBtn').prop('disabled', false);
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

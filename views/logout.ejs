@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Logged Out | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    body {
+      background: #eeeeee;
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+    }
+    .logout-container {
+      max-width: 400px;
+      margin: 100px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .logout-container h2 {
+      color: #00adb5;
+      margin-bottom: 18px;
+    }
+    .logout-container p {
+      color: #393e46;
+      margin-bottom: 24px;
+    }
+    .btn-nids {
+      background: #00adb5;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 24px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-nids:hover {
+      background: #199fa7;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-container">
+    <h2><i class="fas fa-sign-out-alt"></i> Logged Out</h2>
+    <p>You have been successfully logged out.</p>
+    <a href="/login" class="btn btn-nids">Login Again</a>
+    <br><br>
+    <a href="/" class="btn btn-link">Return Home</a>
+  </div>
+  <script src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" crossorigin

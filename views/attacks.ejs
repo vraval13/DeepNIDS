@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Attack Types | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+    }
+    body {
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      background: var(--muted);
+      color: var(--accent);
+      margin: 0; padding:0;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: var(--primary) !important;
+    }
+    #attacks-title {
+      text-align: center;
+      margin: 48px 0 24px 0;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #00ADB5;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00adb543;
+    }
+    #attack-carousel-section {
+      background: linear-gradient(110deg,#00adb5, #393E46 100%);
+      padding: 0px 0 40px 0;
+    }
+    #testimonial-carousel .card {
+      box-shadow: 0px 18px 32px -10px rgba(0,173,181,0.15);
+      border-radius: 18px;
+      border: none;
+      margin-top: 32px;
+      background: #e4f5f8;
+      max-width: 570px;
+      margin-left:auto; margin-right:auto;
+    }
+    #testimonial-carousel .card-title {
+      font-size: 1.45rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing:1px;
+    }
+    #testimonial-carousel .card-text {
+      color: #2d3a41;
+      font-size: 1.08rem;
+      opacity: 0.98;
+    }
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+      background-color: #00adb5; border-radius: 100px;
+    }
+    .carousel-indicators li {
+      background-color: #00adb5;
+    }
+    @media (max-width: 991px) {
+      #attacks-title { font-size: 2.1rem; }
+    }
+    @media (max-width: 767px) {
+      #attacks-title { font-size: 1.3rem; }
+      .navbar { padding:10px 1rem;}
+    }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<h1 id="attacks-title">Possible Network Attacks</h1>
+
+<section class="colored-section" id="attack-carousel-section">
+  <div id="testimonial-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+      <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#testimonial-carousel" data-slide-to="1"></li>
+      <li data-target="#testimonial-carousel" data-slide-to="2"></li>
+      <li data-target="#testimonial-carousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <!-- DoS attack -->
+      <div class="carousel-item active container-fluid">
+        <div class="card text-center">
+          <div class="card-body" style="background-color: #eafcfc; border: none;">
+            <span class="badge badge-pill badge-danger mb-2" style="font-size:1rem;"><i class="fas fa-ban"></i>  DoS Attack</span>
+            <h5 class="card-title">Denial of Service (DoS)</h5>
+            <p class="card-text">A Denial-of-Service (DoS) attack aims to disrupt a system or network by overwhelming it with traffic, making it inaccessible to users and causing costly downtime.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Probe -->
+      <div class="carousel-item container-fluid">
+        <div class="card text-center">
+          <div class="card-body">
+            <span class="badge badge-pill badge-info mb-2" style="font-size:1rem;"><i class="fas fa-search"></i> Probe</span>
+            <h5 class="card-title">Probe Attack</h5>
+            <p class="card-text">An intruder scans the network for vulnerabilities, open ports, or information to exploit, serving as reconnaissance for future attacks.</p>
+          </div>
+        </div>
+      </div>
+      <!-- R2L -->
+      <div class="carousel-item container-fluid">
+        <div class="card text-center">
+          <div class="card-body">
+            <span class="badge badge-pill badge-warning mb-2" style="font-size:1rem;"><i class="fas fa-user-lock"></i> R2L</span>
+            <h5 class="card-title">Remote to User (R2L)</h5>
+            <p class="card-text">The attacker attempts to gain unauthorized local access from a remote location—often by password guessing or exploiting vulnerabilities.</p>
+          </div>
+        </div>
+      </div>
+      <!-- U2R -->
+      <div class="carousel-item container-fluid">
+        <div class="card text-center">
+          <div class="card-body">
+            <span class="badge badge-pill badge-primary mb-2" style="font-size:1rem;"><i class="fas fa-user-shield"></i> U2R</span>
+            <h5 class="card-title">User to Root (U2R)</h5>
+            <p class="card-text">An attacker with user-level access tries to escalate privileges, gaining unauthorized root-level or administrative control.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+</section>
+
+<!-- Add these just before </body> -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script

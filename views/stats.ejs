@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Model Statistics | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+    }
+    body {
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      background: var(--muted);
+      color: var(--accent);
+      margin: 0; padding:0;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: var(--primary) !important;
+    }
+    .stats-section {
+      padding: 60px 0 40px 0;
+      background: #fff;
+      min-height: 100vh;
+    }
+    .stats-title {
+      text-align: center;
+      margin-bottom: 38px;
+      font-weight: 700;
+      font-size: 2.3rem;
+      color: #00ADB5;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00adb543;
+    }
+    .stats-table-box {
+      background: #f7fafb;
+      border-radius: 18px;
+      box-shadow: 0 3px 18px -8px #aad7da4a;
+      padding: 32px 18px 18px 18px;
+      margin-bottom: 38px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stats-table-box h2 {
+      color: var(--primary);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .table {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .table thead th {
+      background: #00adb5;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      font-size: 1.07rem;
+      letter-spacing: 1px;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #eafcfc;
+    }
+    .table-striped tbody tr:nth-of-type(even) {
+      background-color: #f7fafb;
+    }
+    .table td, .table th {
+      color: #222;
+      font-weight: 500;
+      vertical-align: middle;
+      border-top: none;
+      border-bottom: 1.5px solid #e0e0e0;
+      font-size: 1.01rem;
+    }
+    .table th[rowspan], .table td[rowspan] {
+      background: #e0f7fa;
+      color: #00adb5;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border-right: 2px solid #fff;
+    }
+    @media (max-width: 991px) {
+      .stats-title { font-size: 1.5rem; }
+      .stats-table-box { padding: 18px 2px; }
+    }
+    @media (max-width: 767px) {
+      .stats-table-box { padding: 8px 0; }
+      .table th, .table td { font-size: 0.93rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="stats-section">
+  <h1 class="stats-title"><i class="fas fa-chart-bar mr-2"></i>Model Performance Statistics</h1>
+  <div class="stats-table-box">
+    <h2>Binary-Class Classification Table</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>ALGORITHMS</th>
+            <th>PRECISION</th>
+            <th>RECALL</th>
+            <th>F-1 SCORE</th>
+            <th>SUPPORT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Paste your binary-class table rows here -->
+          <!-- ...existing code... -->
+<% /* Paste your binary-class table rows here from your original file */ %>
+<tr>
+    <th rowspan="4">NORMAL</th>
+    <td>KNN</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>9246</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.99</td>
+    <td>0.96</td>
+    <td>0.97</td>
+    <td>9847</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.94</td>
+    <td>0.96</td>
+    <td>0.95</td>
+    <td>9217</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.94</td>
+    <td>0.96</td>
+    <td>0.95</td>
+    <td>9217</td>
+</tr>
+<tr>
+    <th rowspan="4">ATTACK</th>
+    <td>KNN</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>12169</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.97</td>
+    <td>0.99</td>
+    <td>0.98</td>
+    <td>11928</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.97</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>12198</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.97</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>12198</td>
+</tr>
+<tr>
+    <th rowspan="4">ACCURACY</th>
+    <td>KNN</td>
+    <td></td>
+    <td></td>
+    <td>0.98</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td></td>
+    <td></td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td></td>
+    <td></td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td></td>
+    <td></td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <th rowspan="4">MACRO AVERAGE</th>
+    <td>KNN</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.98</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.95</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <th rowspan="4">WEIGHTED AVERAGE</th>
+    <td>KNN</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="stats-table-box">
+    <h2>Multi-Class Classification Table</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th> </th>
+            <th>ALGORITHMS</th>
+            <th>PRECISION</th>
+            <th>RECALL</th>
+            <th>F-1 SCORE</th>
+            <th>SUPPORT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Paste your multi-class table rows here -->
+          <!-- ...existing code... -->
+<% /* Paste your multi-class table rows here from your original file */ %>
+<tr>
+    <th rowspan="4">DOS</th>
+    <td>KNN</td>
+    <td>0.99</td>
+    <td>0.99</td>
+    <td>0.99</td>
+    <td>6834</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>6822</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.99</td>
+    <td>0.97</td>
+    <td>0.98</td>
+    <td>6822</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>1.00</td>
+    <td>0.97</td>
+    <td>0.98</td>
+    <td>6822</td>
+</tr>
+<tr>
+    <th rowspan="4">NORMAL</th>
+    <td>KNN</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>9270</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.99</td>
+    <td>0.95</td>
+    <td>0.97</td>
+    <td>9513</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.92</td>
+    <td>0.98</td>
+    <td>0.95</td>
+    <td>9217</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.94</td>
+    <td>0.97</td>
+    <td>0.96</td>
+    <td>9217</td>
+</tr>
+<tr>
+    <th rowspan="4">PROBE</th>
+    <td>KNN</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>0.98</td>
+    <td>2307</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>2308</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.94</td>
+    <td>0.97</td>
+    <td>0.96</td>
+    <td>2298</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.96</td>
+    <td>0.98</td>
+    <td>0.97</td>
+    <td>2298</td>
+</tr>
+<tr>
+    <th rowspan="4">U2R</th>
+    <td>KNN</td>
+    <td>0.84</td>
+    <td>0.87</td>
+    <td>0.86</td>
+    <td>919</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.83</td>
+    <td>1.00</td>
+    <td>0.90</td>
+    <td>1765</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.97</td>
+    <td>0.89</td>
+    <td>0.93</td>
+    <td>2125</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.97</td>
+    <td>0.90</td>
+    <td>0.94</td>
+    <td>2125</td>
+</tr>
+<tr>
+    <th rowspan="4">R2L</th>
+    <td>KNN</td>
+    <td>0.96</td>
+    <td>0.98</td>
+    <td>0.97</td>
+    <td>2085</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.94</td>
+    <td>0.89</td>
+    <td>0.92</td>
+    <td>1007</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.91</td>
+    <td>0.66</td>
+    <td>0.76</td>
+    <td>953</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.85</td>
+    <td>0.84</td>
+    <td>0.85</td>
+    <td>953</td>
+</tr>
+<tr>
+    <th rowspan="4">ACCURACY</th>
+    <td>KNN</td>
+    <td></td>
+    <td></td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td></td>
+    <td></td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td></td>
+    <td></td>
+    <td>0.95</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td></td>
+    <td></td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <th rowspan="4">MACRO AVERAGE</th>
+    <td>KNN</td>
+    <td>0.95</td>
+    <td>0.96</td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.95</td>
+    <td>0.97</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.95</td>
+    <td>0.89</td>
+    <td>0.92</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.94</td>
+    <td>0.93</td>
+    <td>0.94</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <th rowspan="4">WEIGHTED AVERAGE</th>
+    <td>KNN</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>RANDOM FOREST</td>
+    <td>0.98</td>
+    <td>0.97</td>
+    <td>0.97</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>CNN</td>
+    <td>0.95</td>
+    <td>0.95</td>
+    <td>0.95</td>
+    <td>21415</td>
+</tr>
+<tr>
+    <td>LSTM</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>0.96</td>
+    <td>21415</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

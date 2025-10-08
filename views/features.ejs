@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Features | NIDS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --primary: #00ADB5;
+      --accent: #393E46;
+      --muted: #EEEEEE;
+    }
+    body {
+      font-family: 'Montserrat', 'Ubuntu', sans-serif;
+      background: var(--muted);
+      color: var(--accent);
+      margin: 0; padding:0;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #393E46 70%, #00ADB5 100%)!important;
+      box-shadow: 0 2px 16px rgba(57,62,70,0.08);
+      padding: 1rem 2rem;
+    }
+    .navbar-brand {
+      font-weight: bold; letter-spacing:2px;
+      font-size: 1.7rem;
+      color: #fff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #EEE !important;
+      margin-right: 1.2rem;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+      color: var(--primary) !important;
+    }
+    .features-section {
+      padding: 60px 0 40px 0;
+      background: #fff;
+    }
+    .features-title {
+      text-align: center;
+      margin-bottom: 48px;
+      font-weight: 700;
+      font-size: 2.7rem;
+      color: #00ADB5;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00adb543;
+    }
+    .feature-box {
+      text-align: center;
+      padding: 42px 26px 32px 26px;
+      background: #f7fafb;
+      box-shadow: 0 3px 18px -8px #aad7da4a;
+      border-radius: 18px;
+      margin-bottom: 36px;
+      opacity: 0.94;
+      transition: transform .2s, box-shadow .19s;
+    }
+    .feature-box:hover {
+      transform: translateY(-5px) scale(1.025) rotate(-2deg);
+      box-shadow: 0 14px 44px -8px #00adb540;
+      background: #e7fcfe;
+    }
+    .icon {
+      color: var(--primary);
+      margin-bottom: 20px;
+      transition: color .14s,transform 0.16s;
+    }
+    .feature-box:hover .icon {
+      color: #222;
+      transform: scale(1.06) rotate(1deg);
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: #393E46;
+    }
+    .feature-desc {
+      font-size: 1.04rem;
+      color: #444;
+    }
+    @media (max-width: 991px) {
+      .features-title { font-size: 2.1rem; }
+      .feature-box { margin-bottom:28px;}
+    }
+    @media (max-width: 576px) {
+      .features-title { font-size: 1.3rem; }
+      .feature-title { font-size: 1.1rem; }
+      .feature-desc { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <a class="navbar-brand" href="/" style="display:flex;align-items:center;">
+    <i class="fas fa-shield-alt mr-2" style="font-size:1.5rem;color:#31e6d4;"></i>NIDS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/submit">Predict</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/features">Features</a></li>
+      <li class="nav-item"><a class="nav-link" href="/attacks">Attacks</a></li>
+      <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/stats">Stats</a></li>
+      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- FEATURES SECTION -->
+<section class="features-section" id="features">
+  <div class="container">
+    <h1 class="features-title">Features</h1>
+    <div class="row" style="color: #393E46;">
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-network-wired fa-4x"></i>
+        <h3 class="feature-title">Network Processing</h3>
+        <p class="feature-desc">Transform live traffic into unique network signature patterns.</p>
+      </div>
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-shield-alt fa-4x"></i>
+        <h3 class="feature-title">Prevent System</h3>
+        <p class="feature-desc">Active defense responses on detecting threats.</p>
+      </div>
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-bug fa-4x"></i>
+        <h3 class="feature-title">Threat Reporting</h3>
+        <p class="feature-desc">Comprehensive threat event logging and visualization.</p>
+      </div>
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-filter fa-4x"></i>
+        <h3 class="feature-title">Threat Classification</h3>
+        <p class="feature-desc">Classifies each incident by advanced signature-based analysis.</p>
+      </div>
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-search fa-4x"></i>
+        <h3 class="feature-title">Anomaly Detection</h3>
+        <p class="feature-desc">Detects unknown/zero-day attacks with anomaly checks.</p>
+      </div>
+      <div class="feature-box col-lg-4 col-md-6">
+        <i class="icon fas fa-dna fa-4x"></i>
+        <h3 class="feature-title">Signature Matching</h3>
+        <p class="feature-desc">Efficient matching to global threat signature library.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
